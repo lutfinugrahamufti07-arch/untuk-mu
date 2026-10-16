@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untuk Kamu ❤️</title>
+    <style>
+        body {
+            background-color: #ffe6e8;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding-top: 150px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            width: 90%;
+            max-width: 500px;
+        }
+        h1 {
+            color: #d63384;
+            font-size: 22px;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+        .btn-group {
+            position: relative;
+            height: 200px;
+        }
+        button {
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.1s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .btn-yes {
+            background-color: #4CAF50;
+            color: white;
+            margin-right: 15px;
+        }
+        .btn-no {
+            background-color: #f44336;
+            color: white;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- TAHAP 1 -->
+    <div id="tahap1" class="container">
+        <h1>Hai! Aku ada sesuatu nih yang mau aku tanyain ke kamu... 👀</h1>
+        <button class="btn-yes" onclick="lanjut(2)">Apa tuh?</button>
+    </div>
+
+    <!-- TAHAP 2 -->
+    <div id="tahap2" class="container" style="display: none;">
+        <h1>Selama kita kenal dan deket, kamu ngerasa nyaman nggak sama aku? 😊</h1>
+        <div class="btn-group">
+            <button class="btn-yes" onclick="lanjut(3)">Nyaman banget! ❤️</button>
+            <button class="btn-no" onmouseover="kabur(this)" onclick="kabur(this)">Biasa aja 😜</button>
+        </div>
+    </div>
+
+    <!-- TAHAP 3 -->
+    <div id="tahap3" class="container" style="display: none;">
+        <h1>Kalau gitu, kamu mau nggak jadi pacarku? 🥰</h1>
+        <div class="btn-group">
+            <!-- PENTING: Ganti nomor WA di dalam fungsi kirimWA() di bawah -->
+            <button class="btn-yes" onclick="kirimWA()">MAU BANG3T! 💕</button>
+            <button class="btn-no" onmouseover="kabur(this)" onclick="kabur(this)">Nggak! 😝</button>
+        </div>
+    </div>
+
+    <script>
+        // Fungsi untuk pindah ke pertanyaan selanjutnya
+        function lanjut(tahap) {
+            document.getElementById('tahap1').style.display = 'none';
+            document.getElementById('tahap2').style.display = 'none';
+            document.getElementById('tahap3').style.display = 'none';
+            document.getElementById('tahap' + tahap).style.display = 'block';
+        }
+
+        // Fungsi untuk membuat tombol "Nggak" kabur
+        function kabur(tombol) {
+            const x = Math.floor(Math.random() * (window.innerWidth - 120));
+            const y = Math.floor(Math.random() * (window.innerHeight - 150));
+            tombol.style.left = x + 'px';
+            tombol.style.top = y + 'px';
+        }
+
+        // Fungsi untuk otomatis buka WhatsApp
+        function kirimWA() {
+            // UBAH NOMOR INI JADI NOMORMU. Harus pakai 62 di depan (pengganti 0)
+            const nomorWA = "6285888032947"; 
+            
+            // Teks balasan yang akan otomatis terketik di WA-nya
+            const pesan = "Haiii! Iyaa, aku mau kok jadi pacar kamu! 🥰❤️ (Ini aku jawab jujur dari webnya lho!)";
+            
+            // Mengarahkan ke link WhatsApp
+            const linkWA = "https://wa.me/" + nomorWA + "?text=" + encodeURIComponent(pesan);
+            window.location.href = linkWA;
+        }
+    </script>
+</body>
+</html>
